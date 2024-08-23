@@ -2,10 +2,12 @@ import Alert from "@/components/alert";
 import AuthHeader from "@/components/authHeader";
 import DesktopIcon from "@/icons/desktop";
 import "@/styles/globals.css";
+import { API } from "@/utils/api";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
+  // const { user, setUser } = useUserStore();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
