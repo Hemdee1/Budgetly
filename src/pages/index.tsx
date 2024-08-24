@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Header from "@/components/header";
+import useUserStore from "@/store/user";
 import Link from "next/link";
 
 export default function Home() {
-  // const { user } = useUserStore();
+  const { user } = useUserStore();
 
   return (
     <main className="bg-[#F1F6FF]">
@@ -21,7 +22,7 @@ export default function Home() {
             Get AI - generated categories and allocate x% of your monthly income
             to achieve your financial goals.
           </p>
-          {/* {user ? (
+          {user ? (
             <Link
               href="/dashboard"
               className="bg-primary inline-block text-white p-4 rounded-lg font-semibold"
@@ -35,7 +36,7 @@ export default function Home() {
             >
               Create free account
             </Link>
-          )} */}
+          )}
         </div>
         <Image
           src="/images/hero3.png"

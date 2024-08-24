@@ -1,13 +1,14 @@
 import Alert from "@/components/alert";
 import AuthHeader from "@/components/authHeader";
 import DesktopIcon from "@/icons/desktop";
+import useUserStore from "@/store/user";
 import "@/styles/globals.css";
 import { API } from "@/utils/api";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  // const { user, setUser } = useUserStore();
+  const { user, setUser } = useUserStore();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
@@ -16,7 +17,20 @@ export default function App({ Component, pageProps }: AppProps) {
     if (browserWidth < 1200) {
       return setIsSmallScreen(true);
     }
-  }, []);
+
+    const autoLogin = async () => {
+      const res = await API.get("/user/autologin");
+
+      if (res.data) {
+        setUser(res.data);
+      } else {
+        setUser(undefined);
+        console.log(res.error);
+      }
+    };
+
+    autoLogin();
+  }, [setUser]);
 
   return isSmallScreen ? (
     <>
