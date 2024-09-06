@@ -78,15 +78,17 @@ const AddExpensesModal = ({
       height="80vh"
       scroll
     >
-      <h2 className="font-semibold text-gray1 text-xl">Add Expenses</h2>
+      <h2 className="font-semibold text-gray1 text-lg sm:text-xl">
+        Add Expenses
+      </h2>
 
       <div className="w-full space-y-8 mt-8">
-        <div className="flex gap-x-4 gap-y-6 flex-wrap">
+        <div className="flex gap-x-2 sm:gap-x-4 gap-y-4 sm:gap-y-6 flex-wrap">
           {data.map((income, index) => (
             <button
               onClick={() => setValue(income)}
               key={index}
-              className={`px-4 py-3 font-medium border  rounded-full transition-color duration-300 ${
+              className={`px-3 sm:px-4 py-2 sm:py-3 font-medium border text-sm sm:text-base rounded-full transition-color duration-300 ${
                 value === income
                   ? "text-primary border-primary shadow-blue-500"
                   : "border-gray4 text-gray1"
@@ -100,7 +102,7 @@ const AddExpensesModal = ({
         <div className="relative">
           <input
             type="text"
-            className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+            className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
             placeholder="Enter Expense"
             value={value}
             onChange={(e) => {
@@ -143,7 +145,7 @@ const AddExpensesModal = ({
           <button
             onClick={handleAdd}
             disabled={!value || !category || loading}
-            className="w-full mt-5 py-5 flex gap-3 items-center justify-center font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
+            className="w-full mt-5 py-3 sm:py-5 flex gap-3 items-center justify-center font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
           >
             Add {value && formatOnly(+value)}
             {loading && <span className="loader-small"></span>}
@@ -156,9 +158,11 @@ const AddExpensesModal = ({
         closeModal={() => setOpenCategoryModal(false)}
         width="400px"
       >
-        <h2 className="font-semibold text-gray1 text-xl">Choose Category</h2>
+        <h2 className="font-semibold text-gray1 text-lg sm:text-xl">
+          Choose Category
+        </h2>
 
-        <div className="mt-6 py-2 space-y-4 overflow-y-scroll h-[40vh]">
+        <div className="mt-6 py-2 space-y-4 overflow-y-scroll scrollbar h-[40vh]">
           {user?.budget?.category?.map((data, index) => (
             <button
               key={index}

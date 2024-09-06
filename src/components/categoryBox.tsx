@@ -10,9 +10,9 @@ const CategoryBox = ({ data }: { data: CategoryType }) => {
   const percent = Math.round((totalExpense / data.price) * 100);
 
   return (
-    <article className="p-4 border border-gray4 bg-white  rounded-2xl">
+    <article className="p-4 border border-gray4 bg-white rounded-2xl">
       <div className="flex gap-2">
-        <span className="w-11 h-11 rounded-full bg-[#F7F9FA] grid place-content-center text-xl">
+        <span className="w-8 sm:w-11 h-8 sm:h-11 rounded-full bg-[#F7F9FA] grid place-content-center text-lg sm:text-xl">
           {data.icon}
         </span>
         <div>

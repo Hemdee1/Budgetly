@@ -36,6 +36,34 @@ const Modal = ({
     }
   }, [openModal]);
 
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeModal && closeModal();
+      }
+    };
+
+    const disableScroll = () => {
+      document.body.style.overflow = "hidden";
+    };
+
+    const enableScroll = () => {
+      document.body.style.overflow = "";
+    };
+
+    if (isVisible) {
+      disableScroll();
+      window.addEventListener("keydown", handleEsc);
+    } else {
+      enableScroll();
+    }
+
+    return () => {
+      enableScroll();
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [closeModal, isVisible]);
+
   if (!isVisible) return null;
 
   return (
@@ -43,23 +71,27 @@ const Modal = ({
       className={`font-Inter fixed inset-0 z-[100] px-4 sm:px-10 bg-[#0922564D] backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
         openModal ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
+      onClick={closeModal}
     >
       <div
         className={"relative py-2 bg-white max-w-full rounded-2xl " + className}
         style={{ width }}
+        onClick={(e) => e.stopPropagation()}
       >
         {closeModal && (
           <button
             type="button"
             onClick={closeModal}
-            className="absolute right-6 top-6 z-[1]"
+            className="absolute right-5 top-5 z-[1]"
           >
             <CloseIcon />
           </button>
         )}
 
         <div
-          className={`px-5 py-5 relative ${scroll ? "overflow-y-scroll" : ""}`}
+          className={`px-3 sm:px-5 py-5 relative ${
+            scroll ? "overflow-y-scroll scrollbar" : ""
+          }`}
           style={{ maxHeight: height }}
         >
           {children}

@@ -49,7 +49,9 @@ const ProfileModal = ({
       closeModal={() => setOpenModal(false)}
       height="80vh"
     >
-      <h2 className="font-semibold text-gray1 text-xl">Update Profile</h2>
+      <h2 className="font-semibold text-gray1 text-lg sm:text-xl">
+        Update Profile
+      </h2>
 
       <div className="mt-6 space-y-5">
         <div className="flex gap-4 items-center">
@@ -82,7 +84,7 @@ const ProfileModal = ({
 
         <input
           type="text"
-          className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+          className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
           placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
@@ -90,7 +92,7 @@ const ProfileModal = ({
         />
         <input
           type="text"
-          className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+          className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
           placeholder="Last Name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
@@ -98,7 +100,7 @@ const ProfileModal = ({
         />
         <input
           type="text"
-          className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm disabled:bg-gray-300"
+          className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm disabled:bg-gray-300"
           placeholder="Last Name"
           value={user?.email}
           disabled
@@ -108,7 +110,7 @@ const ProfileModal = ({
           <button
             onClick={handleUpdate}
             disabled={!firstName || !lastName || loading}
-            className="w-full py-5 font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
+            className="w-full py-3 sm:py-5 text-sm sm:text-base font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
           >
             {loading ? <span className="loader-small" /> : "Update"}
           </button>

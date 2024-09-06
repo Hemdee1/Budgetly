@@ -51,7 +51,7 @@ const AddNewCategoryModal = ({
       closeModal={() => setOpenModal(false)}
       width="400px"
     >
-      <h2 className="font-semibold text-gray1 text-xl">Add New Category</h2>
+      <h2 className="font-semibold text-gray1 sm:text-xl">Add New Category</h2>
 
       <form className="w-full space-y-4 mt-6" onSubmit={handleAdd}>
         <div className="relative">
@@ -140,7 +140,7 @@ const AddNewCategoryModal = ({
         </div> */}
 
         <div className="flex justify-center">
-          <button className="mt-5 w-full py-5 font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3">
+          <button className="mt-5 w-full py-3 sm:py-5 text-sm sm:text-base font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3">
             Add
           </button>
         </div>

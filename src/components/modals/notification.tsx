@@ -28,15 +28,17 @@ const NotificationModal = ({
 
   return (
     <Modal openModal={openModal} closeModal={() => setOpenModal(false)}>
-      <h2 className="font-semibold text-gray1 text-xl">Notifications</h2>
+      <h2 className="font-semibold text-gray1 text-lg sm:text-xl">
+        Notifications
+      </h2>
 
       <div className="space-y-5">
-        <h4 className="mt-10 pb-5 border-b border-[#EBEEEE] font-semibold text-gray1 text-lg">
+        <h4 className="mt-10 pb-5 border-b border-[#EBEEEE] font-semibold text-gray1 sm:text-lg">
           Daily reminders
         </h4>
 
         <div className="flex w-full justify-between items-center">
-          <h4 className="font-semibold text-gray1 text-lg">Once daily</h4>
+          <h4 className="font-semibold text-gray1 sm:text-lg">Once daily</h4>
 
           <button onClick={() => changeType("once")}>
             {typeSelected === "once" ? <CheckedIcon /> : <UncheckedIcon />}
@@ -44,7 +46,7 @@ const NotificationModal = ({
         </div>
 
         <div className="flex w-full justify-between items-center">
-          <h4 className="font-semibold text-gray1 text-lg">Twice daily</h4>
+          <h4 className="font-semibold text-gray1 sm:text-lg">Twice daily</h4>
 
           <button onClick={() => changeType("twice")}>
             {typeSelected === "twice" ? <CheckedIcon /> : <UncheckedIcon />}

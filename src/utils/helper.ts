@@ -68,8 +68,24 @@ export const getPoints = (user: UserType) => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     }) as HistoryType[];
 
+  // const uniqueDays = new Set(
+  //   history?.map((item) => new Date(item.createdAt).toDateString())
+  // ).size;
+
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth(); // Get the current month (0-based)
+  const currentYear = currentDate.getFullYear(); // Get the current year
+
   const uniqueDays = new Set(
-    history?.map((item) => new Date(item.createdAt).toDateString())
+    history
+      ?.filter((item) => {
+        const itemDate = new Date(item.createdAt);
+        return (
+          itemDate.getMonth() === currentMonth &&
+          itemDate.getFullYear() === currentYear
+        );
+      })
+      .map((item) => new Date(item.createdAt).toDateString())
   ).size;
 
   const expensePoints =

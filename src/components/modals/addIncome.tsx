@@ -73,15 +73,17 @@ const AddIncomeModal = ({
       height="80vh"
       scroll
     >
-      <h2 className="font-semibold text-gray1 text-xl">Add Income</h2>
+      <h2 className="font-semibold text-gray1 text-lg sm:text-xl">
+        Add Income
+      </h2>
 
       <div className="w-full space-y-8 mt-8">
-        <div className="flex gap-x-4 gap-y-6 flex-wrap">
+        <div className="flex gap-x-2 sm:gap-x-4 gap-y-4 sm:gap-y-6 flex-wrap">
           {data.map((income, index) => (
             <button
               onClick={() => setValue(income)}
               key={index}
-              className={`px-4 py-3 font-medium border  rounded-full transition-color duration-300 ${
+              className={`px-3 sm:px-4 py-2 sm:py-3 font-medium border text-sm sm:text-base rounded-full transition-color duration-300 ${
                 value === income
                   ? "text-primary border-primary shadow-blue-500"
                   : "border-gray4 text-gray1"
@@ -95,7 +97,7 @@ const AddIncomeModal = ({
         <div className="relative">
           <input
             type="text"
-            className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+            className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
             placeholder="Enter Income"
             value={value}
             onChange={(e) => {
@@ -117,7 +119,7 @@ const AddIncomeModal = ({
         <div className="relative w-full">
           <input
             type="text"
-            className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+            className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
             placeholder="Title (Leave blank if there's none)"
             value={title}
             onChange={(e) => {
@@ -139,7 +141,7 @@ const AddIncomeModal = ({
           <button
             onClick={handleAdd}
             disabled={!value || loading}
-            className="w-full mt-5 py-5 flex gap-3 items-center justify-center font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
+            className="w-full mt-5 py-3 sm:py-5 flex gap-3 items-center justify-center font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
           >
             Add {value && formatOnly(+value)}
             {loading && <span className="loader-small"></span>}

@@ -41,16 +41,16 @@ const Page = () => {
   };
 
   return (
-    <div className="py-24">
+    <div className="py-24 px-5">
       <AuthHeader />
 
       <div className="w-[600px] mt-20 max-w-full mx-auto border-gray4 border  rounded-3xl px-5 sm:px-10 py-8">
-        <h2 className="text-2xl font-bold">Reset password 😀</h2>
+        <h2 className="text-xl sm:text-2xl font-bold">Reset password 😀</h2>
         <div className="mt-8 space-y-6">
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+              className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -66,7 +66,7 @@ const Page = () => {
           <div className="relative">
             <input
               type={showConfirmPassword ? "text" : "password"}
-              className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+              className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -88,7 +88,7 @@ const Page = () => {
               disabled={
                 !(password && confirmPassword && password === confirmPassword)
               }
-              className="w-full py-5 rounded-lg bg-primary font-bold text-center text-white mt-6 transition-colors duration-300 disabled:bg-gray3"
+              className="w-full py-4 sm:py-5 rounded-lg bg-primary font-bold text-center text-white mt-6 transition-colors duration-300 disabled:bg-gray3"
             >
               {loading ? <span className="loader-small" /> : "Change password"}
             </button>

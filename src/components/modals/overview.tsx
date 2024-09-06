@@ -141,44 +141,46 @@ const BudgetOverviewModal = ({
       height="80vh"
       scroll
     >
-      <div className="flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => {
-              setOpenModal(false);
-              setOpenPrevModal(true);
-            }}
-          >
-            <ArrowBackIcon />
-          </button>
-          <div>
-            <h2 className="font-semibold text-gray1 text-xl">
-              Budget Overview
-            </h2>
+      <div className="flex justify-between items-start gap-4 sm:items-center">
+        <button
+          onClick={() => {
+            setOpenModal(false);
+            setOpenPrevModal(true);
+          }}
+        >
+          <ArrowBackIcon />
+        </button>
+        <div className="flex justify-between w-full flex-col sm:flex-row">
+          <div className="flex items-center gap-4">
+            <div>
+              <h2 className="font-semibold text-gray1 sm:text-xl">
+                Budget Overview
+              </h2>
 
-            <h4 className="text-sm text-gray1 mt-1">
-              Monthly Income: {formatOnly(+income)}
+              <h4 className="text-xs sm:text-sm text-gray1 mt-1">
+                Monthly Income: {formatOnly(+income)}
+              </h4>
+            </div>
+          </div>
+          <div className="pr-8 sm:text-right">
+            <span
+              className={`font-bold text-base sm:text-lg absolute right-5 top-5 sm:static ${
+                totalPercent < 100
+                  ? "text-yellow-500"
+                  : totalPercent > 100
+                  ? "text-red"
+                  : "text-green"
+              }`}
+            >
+              {totalPercent}%
+            </span>
+            <h4 className="text-xs sm:text-sm text-gray1 mt-1">
+              Total Budget:{" "}
+              {formatOnly(
+                calculatedBudget.reduce((total, b) => total + b.price, 0)
+              )}
             </h4>
           </div>
-        </div>
-        <div className="pr-8 text-right">
-          <span
-            className={`font-bold text-lg ${
-              totalPercent < 100
-                ? "text-yellow-500"
-                : totalPercent > 100
-                ? "text-red"
-                : "text-green"
-            }`}
-          >
-            {totalPercent}%
-          </span>
-          <h4 className="text-sm text-gray1 mt-1">
-            Total Budget:{" "}
-            {formatOnly(
-              calculatedBudget.reduce((total, b) => total + b.price, 0)
-            )}
-          </h4>
         </div>
       </div>
 
@@ -186,25 +188,31 @@ const BudgetOverviewModal = ({
         Customize the percent and the price allocated for your categories
       </h4> */}
 
-      <div className="mt-3 space-y-4 h-[45vh] p-4 overflow-y-scroll">
+      <div className="mt-3 space-y-4 h-[45vh] px-1 sm:px-4 py-4 overflow-y-scroll scrollbar">
         {calculatedBudget.map((budget, index) => (
           <article
             key={index}
-            className={`p-4 border-gray3 border rounded-2xl flex justify-between items-center text-gray1 ${
+            className={`p-2 sm:p-4 border-gray3 border rounded-lg sm:rounded-2xl flex justify-between gap-2 text-gray1 ${
               budget.title === "Rent" ? "bg-green/10" : ""
             }`}
           >
-            <div className="flex gap-2">
-              <span className="w-11 h-11 rounded-full bg-[#F7F9FA] grid place-content-center text-xl">
+            <div className="flex gap-2 items-center">
+              <span className="min-w-[32px] w-8 sm:w-11 h-8 sm:h-11 rounded-full bg-[#F7F9FA] grid place-content-center text-sm sm:text-xl">
                 {budget.icon}
               </span>
               <div>
-                <h3 className="font-semibold">{budget.title}</h3>
-                <h5 className="font-medium text-sm">{budget.desc}</h5>
+                <h3 className="font-semibold text-xs sm:text-base">
+                  {budget.title}
+                </h3>
+                <h5 className="font-medium text-[#667185] text-[11px] sm:text-sm">
+                  {budget.desc}
+                </h5>
               </div>
             </div>
             <div className="flex flex-col items-end">
-              <h3 className="font-semibold">{formatOnly(budget.price)}</h3>
+              <h3 className="font-semibold text-xs sm:text-base">
+                {formatOnly(budget.price)}
+              </h3>
               <div className="flex gap-2 items-center mt-2">
                 <button
                   disabled={budget.title === "Rent"}
@@ -213,7 +221,7 @@ const BudgetOverviewModal = ({
                 >
                   <MinusIcon />
                 </button>
-                <span className="text-sm">{budget.percent}%</span>
+                <span className="text-xs sm:text-sm">{budget.percent}%</span>
                 <button
                   disabled={budget.title === "Rent"}
                   onClick={() => handleChangePercent("plus", index)}
@@ -227,10 +235,10 @@ const BudgetOverviewModal = ({
         ))}
       </div>
 
-      <div className="px-8 mt-4">
+      <div className="sm:px-8 mt-4">
         <div className="flex justify-end">
           <button
-            className="flex gap-2 items-center text-sm font-semibold text-primary"
+            className="flex gap-2 items-center text-xs sm:text-sm font-semibold text-primary"
             onClick={() => setOpenAddCategoryModal(true)}
           >
             <PlusIconAlt />
@@ -238,7 +246,7 @@ const BudgetOverviewModal = ({
           </button>
         </div>
 
-        <h4 className="text-sm text-gray1 mt-6 text-center">
+        <h4 className="text-xs sm:text-sm text-gray1 mt-3 sm:mt-6 text-center">
           To proceed forward, ensure the total percentage across all categories
           equals <span className="text-primary font-semibold">100%</span>
         </h4>
@@ -247,7 +255,7 @@ const BudgetOverviewModal = ({
           <button
             onClick={handleCreate}
             disabled={totalPercent !== 100 || loading}
-            className="w-full py-5 font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
+            className="w-full py-3 sm:py-5 text-sm sm:text-base font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
           >
             {loading ? <span className="loader-small" /> : "Create budget"}
           </button>

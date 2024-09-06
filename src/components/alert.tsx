@@ -14,12 +14,14 @@ const Alert = () => {
 
   return (
     <div
-      className={`min-w-[273px] fixed left-1/2 -translate-x-1/2 z-50 bg-[#092256] rounded-lg shadow-blue-200 shadow-md p-5 flex gap-3 items-center transition-all duration-300 ${
-        alert ? "top-16 opacity-100 visible" : "top-6 opacity-0 invisible"
+      className={`min-w-[273px] fixed left-1/2 -translate-x-1/2 z-50 bg-[#092256] rounded-lg shadow-blue-200 shadow-md p-3 sm:p-5 flex gap-3 items-center transition-all duration-300 ${
+        alert
+          ? "top-10 sm:top-16 opacity-100 visible"
+          : "top-6 opacity-0 invisible"
       }`}
     >
       <MarkIcon />
-      <span className="font-semibold text-white">
+      <span className="font-semibold text-white text-xs sm:text-base">
         {/* ₦400k added successfully */}
         {alertMessage}
       </span>
@@ -29,6 +31,7 @@ const Alert = () => {
 
 const MarkIcon = () => (
   <svg
+    className="h-5 sm:h-6"
     width="24"
     height="24"
     viewBox="0 0 24 24"

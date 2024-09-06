@@ -45,13 +45,15 @@ const ChangePasswordModal = ({
       closeModal={() => setOpenModal(false)}
       height="80vh"
     >
-      <h2 className="font-semibold text-gray1 text-xl">Change Password</h2>
+      <h2 className="font-semibold text-gray1 text-lg sm:text-xl">
+        Change Password
+      </h2>
 
       <div className="mt-6 space-y-5">
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
-            className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+            className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value.trim())}
@@ -68,7 +70,7 @@ const ChangePasswordModal = ({
         <div className="relative">
           <input
             type={showConfirmPassword ? "text" : "password"}
-            className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+            className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value.trim())}
@@ -93,7 +95,7 @@ const ChangePasswordModal = ({
               password !== confirmPassword ||
               loading
             }
-            className="w-full py-5 font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
+            className="w-full py-3 sm:py-5 text-sm sm:text-base font-semibold text-white rounded-lg bg-primary transition-colors duration-300 disabled:bg-gray3"
           >
             {loading ? <span className="loader-small" /> : "Update"}
           </button>

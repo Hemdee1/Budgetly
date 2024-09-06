@@ -1,5 +1,6 @@
 const UserIcon = () => (
   <svg
+    className="w-full h-full"
     width="48"
     height="48"
     viewBox="0 0 48 48"

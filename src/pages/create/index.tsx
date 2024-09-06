@@ -49,24 +49,26 @@ const Page = () => {
   };
 
   return (
-    <div className="py-24">
+    <div className="py-24 px-5">
       <AuthHeader />
 
       <div className="w-[600px] mt-20 max-w-full mx-auto border-gray4 border  rounded-3xl px-5 sm:px-10 py-8">
         <div>
-          {/* <div className="h-1 w-full bg-gray3 rounded-full">
+          <div className="h-1 w-full bg-gray3 rounded-full">
             <span className="h-full w-1/2 bg-primary block rounded-full"></span>
           </div>
-          <span className="mt-5 block text-gray2">Step 1 of 2</span> */}
-          <h1 className="text-gray1 text-xl text-center font-bold">
+          <span className="mt-5 block text-xs sm:text-base text-gray2">
+            Step 1 of 2
+          </span>
+          <h1 className="text-gray1 mt-2 sm:text-xl text-left sm:text-center font-bold">
             Create an account
           </h1>
 
           <div className="mt-8 space-y-6 w-full">
-            <div className="flex gap-6">
+            <div className="flex gap-6 flex-col sm:flex-row">
               <input
                 type="text"
-                className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+                className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
@@ -74,7 +76,7 @@ const Page = () => {
               />
               <input
                 type="text"
-                className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+                className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -83,7 +85,7 @@ const Page = () => {
             </div>
             <input
               type="email"
-              className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+              className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -108,7 +110,7 @@ const Page = () => {
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+                className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -124,7 +126,7 @@ const Page = () => {
             <div className="relative">
               <input
                 type={showConfirmPassword ? "text" : "password"}
-                className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+                className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
                 placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -153,7 +155,7 @@ const Page = () => {
                     password === confirmPassword
                   )
                 }
-                className="w-full py-5 rounded-lg bg-primary font-bold text-center text-white mt-6 transition-colors duration-300 disabled:bg-gray3"
+                className="w-full py-4 sm:py-5 rounded-lg bg-primary font-bold text-center text-white mt-6 transition-colors duration-300 disabled:bg-gray3"
               >
                 {loading ? (
                   <span className="loader-small" />

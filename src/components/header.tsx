@@ -75,168 +75,127 @@ const Header = () => {
         homepage ? "bg-[#F1F6FF] border-none" : "bg-white border-b"
       }`}
     >
-      <div className="w-fullscreen max-w-full mx-auto px-20 py-5 flex justify-between items-center">
+      {/* WIDE SCREEN HEADER */}
+      <div className="hidden w-fullscreen max-w-full mx-auto px-5 md:px-20 py-5 sm:flex justify-between items-center">
         <Link href="/">
           <Logo />
         </Link>
 
-        {user ? (
-          <div className="flex gap-8 items-center">
-            <div className="p-3 rounded-full border border-gray4 bg-white flex items-center gap-2.5 font-medium text-sm relative group">
-              <FlashIcon />
-              {totalXPPoints}XP
-              {/* DROPDOWN MODAL */}
-              <div className="w-[370px] border border-gray4 rounded-lg bg-white p-4 absolute top-14 left-0 z-30 opacity-0 invisible group-hover:opacity-100 group-hover:visible">
-                <div className="bg-[#FBFAFA] rounded-lg p-4">
-                  <div className="flex gap-4 items-center border-b border-gray4 pb-4">
-                    <span className="border border-[#F6F6F6] rounded-full bg-white w-14 h-14 grid place-content-center">
-                      <FlashIcon width={16} />
-                    </span>
-                    <div className="text-gray1 text-left">
-                      <h4 className="font-extrabold text-[30px]">
-                        {totalXPPoints}
-                      </h4>
-                      <span className="font-semibold text-xs mt-3 block">
-                        Points earned
-                      </span>
+        <div className="">
+          {user ? (
+            <>
+              <div className="flex gap-8 items-center">
+                <div className="p-3 rounded-full border border-gray4 bg-white items-center gap-2.5 font-medium text-sm relative group flex">
+                  <FlashIcon />
+                  {totalXPPoints}XP
+                  {/* DROPDOWN MODAL */}
+                  <div className=" absolute top-14 left-0 z-30 opacity-0 invisible group-hover:opacity-100 group-hover:visible">
+                    <TotalPointsModal />
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-full border border-gray4 bg-white items-center gap-2.5 font-medium text-sm relative group flex">
+                  <FlameIcon />
+                  {flamePoints}
+
+                  <div className="absolute top-14 -left-28 z-30 opacity-0 invisible group-hover:opacity-100 group-hover:visible">
+                    <FlamePointsModal />
+                  </div>
+                </div>
+
+                <ChangeCurrencyDropdown />
+
+                <div ref={userRef} className="relative">
+                  <button
+                    onClick={() => setOpenUserDropdown((prev) => !prev)}
+                    className="rounded-full shadow"
+                  >
+                    <div className="w-12 h-12">
+                      {user?.avatar ? (
+                        <Image
+                          src={user.avatar}
+                          alt="user image"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : (
+                        <UserIcon />
+                      )}
                     </div>
-                  </div>
-                  <div className="mt-4 flex justify-between items-center">
-                    <article className="flex items-center gap-4">
-                      <span className="border border-[#F6F6F6] rounded-full bg-[#EFF5FF] w-11 h-11 grid place-content-center">
-                        <ArrowDownIcon />
-                      </span>
-                      <div className="text-gray1 text-left">
-                        <h5 className="font-semibold text-sm">Income</h5>
-                        <span className="font-semibold text-[10px] block">
-                          {incomePoints}XP
-                        </span>
-                      </div>
-                    </article>
-                    <article className="flex items-center gap-4">
-                      <span className="border border-[#F6F6F6] rounded-full bg-[#EFF5FF] w-11 h-11 grid place-content-center">
-                        <ArrowTopIcon />
-                      </span>
-                      <div className="text-gray1 text-left">
-                        <h5 className="font-semibold text-sm">Expenses</h5>
-                        <span className="font-semibold text-[10px] block">
-                          {expensePoints}XP
-                        </span>
-                      </div>
-                    </article>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  </button>
 
-            <div className="p-3 rounded-full border border-gray4 bg-white flex items-center gap-2.5 font-medium text-sm relative group">
-              <FlameIcon />
-              {flamePoints}
-
-              <div className="w-[370px] border border-gray4 rounded-lg bg-white p-4 absolute top-14 -left-28 z-30 opacity-0 invisible group-hover:opacity-100 group-hover:visible">
-                <div className="bg-[#FBFAFA] rounded-lg p-4">
-                  <div className="flex gap-4 items-center">
-                    <span className="border border-[#F6F6F6] rounded-full bg-white w-14 h-14 grid place-content-center">
-                      <FlameIcon />
-                    </span>
-                    <div className="text-gray1 text-left">
-                      <h4 className="font-extrabold text-[30px]">
-                        {flamePoints}
-                      </h4>
-                      <span className="font-semibold text-xs mt-3 block">
-                        Days streaks
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-4 h-5 w-full bg-[#FDEEF0] rounded relative overflow-hidden">
-                    <span
-                      className="absolute left-0 top-0 h-full bg-[#FF3448]"
-                      style={{ width: `${(flamePoints / 30) * 100}%` }}
-                    ></span>
+                  <div
+                    className={`absolute right-0 text-gray1 border border-gray4 divide-gray-100 font-semibold shadow-lg w-[215px] py-4 bg-white rounded-2xl transition-all duration-300 ${
+                      openUserDropdown
+                        ? "top-16 opacity-100 visible"
+                        : "top-6 opacity-0 invisible"
+                    }`}
+                  >
+                    {/* <button className="p-4 w-full text-left">Profile</button> */}
+                    <Link
+                      href="/dashboard"
+                      className="p-4 inline-block w-full text-left"
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      className="p-4 inline-block w-full text-left"
+                      onClick={() => setOpenProfileModal(true)}
+                    >
+                      Update Profile
+                    </button>
+                    <button
+                      className="p-4 inline-block w-full text-left"
+                      onClick={() => setOpenPasswordModal(true)}
+                    >
+                      Change Password
+                    </button>
+                    <button
+                      className="p-4 inline-block w-full text-left"
+                      onClick={() => setOpenNotificationModal(true)}
+                    >
+                      Notifications
+                    </button>
+                    <button
+                      disabled={loading}
+                      onClick={handleLogout}
+                      className="p-4 w-full text-left text-red flex gap-2 items-center"
+                    >
+                      Log out {loading && <span className="loader-red"></span>}
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <ChangeCurrencyDropdown />
-
-            <div ref={userRef} className="relative">
-              <button
-                onClick={() => setOpenUserDropdown((prev) => !prev)}
-                className="rounded-full shadow"
+            </>
+          ) : (
+            <div className="flex items-center gap-6">
+              <Link
+                href="/login"
+                className="text-primary font-bold text-sm sm:text-base"
               >
-                <div className="w-10 h-10">
-                  {user?.avatar ? (
-                    <Image
-                      src={user.avatar}
-                      alt="user image"
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  ) : (
-                    <UserIcon />
-                  )}
-                </div>
-              </button>
-
-              <div
-                className={`absolute right-0 text-gray1 border border-gray4 divide-gray-100 font-semibold shadow-lg w-[215px] py-4 bg-white rounded-2xl transition-all duration-300 ${
-                  openUserDropdown
-                    ? "top-16 opacity-100 visible"
-                    : "top-6 opacity-0 invisible"
-                }`}
+                Log in
+              </Link>
+              <Link
+                href="/create"
+                className="bg-primary text-white px-4 py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-base"
               >
-                {/* <button className="p-4 w-full text-left">Profile</button> */}
-                <Link
-                  href="/dashboard"
-                  className="p-4 inline-block w-full text-left"
-                >
-                  Dashboard
-                </Link>
-                <button
-                  className="p-4 inline-block w-full text-left"
-                  onClick={() => setOpenProfileModal(true)}
-                >
-                  Update Profile
-                </button>
-                <button
-                  className="p-4 inline-block w-full text-left"
-                  onClick={() => setOpenPasswordModal(true)}
-                >
-                  Change Password
-                </button>
-                <button
-                  className="p-4 inline-block w-full text-left"
-                  onClick={() => setOpenNotificationModal(true)}
-                >
-                  Notifications
-                </button>
-                <button
-                  disabled={loading}
-                  onClick={handleLogout}
-                  className="p-4 w-full text-left text-red flex gap-2 items-center"
-                >
-                  Log out {loading && <span className="loader-red"></span>}
-                </button>
-              </div>
+                Create free account
+              </Link>
             </div>
-          </div>
-        ) : (
-          <div className="flex items-center gap-6">
-            <Link href="/login" className="text-primary font-bold">
-              Log in
-            </Link>
-            <Link
-              href="/create"
-              className="bg-primary text-white p-4 rounded-lg font-semibold"
-            >
-              Create free account
-            </Link>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+
+      {/* MOBILE SCREEN HEADER */}
+      <MobileHeader
+        handleLogout={handleLogout}
+        loading={loading}
+        setOpenNotificationModal={setOpenNotificationModal}
+        setOpenPasswordModal={setOpenPasswordModal}
+        setOpenProfileModal={setOpenProfileModal}
+      />
 
       <NotificationModal
         openModal={openNotificationModal}
@@ -254,9 +213,222 @@ const Header = () => {
   );
 };
 
-const FlashIcon = ({ width = 12 }) => (
+type MobileHeaderType = {
+  setOpenProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenPasswordModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenNotificationModal: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
+  handleLogout: () => void;
+};
+
+const MobileHeader = ({
+  handleLogout,
+  loading,
+  setOpenNotificationModal,
+  setOpenPasswordModal,
+  setOpenProfileModal,
+}: MobileHeaderType) => {
+  const { user } = useUserStore();
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  useEffect(() => {
+    if (openDropdown) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [openDropdown]);
+
+  return (
+    <>
+      <div className="w-full px-5 py-5 flex justify-between items-center sm:hidden">
+        <Link href="/">
+          <Logo />
+        </Link>
+
+        {user ? (
+          <div className="flex items-center gap-4 z-[60] relative">
+            <div
+              className={`transition-transform duration-300 ${
+                openDropdown ? "-translate-x-20" : "translate-x-0"
+              }`}
+            >
+              <ChangeCurrencyDropdown input />
+            </div>
+
+            <button onClick={() => setOpenDropdown((prev) => !prev)}>
+              <div className="w-8 h-8">
+                {user?.avatar ? (
+                  <Image
+                    src={user.avatar}
+                    alt="user image"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                ) : (
+                  <UserIcon />
+                )}
+              </div>
+            </button>
+          </div>
+        ) : (
+          <Link
+            href="/login"
+            className="text-primary font-bold text-sm sm:text-base"
+          >
+            Log in
+          </Link>
+        )}
+      </div>
+
+      <div
+        className={`fixed right-0 h-screen top-0 left-0 bg-[#0922564D] backdrop-blur-sm z-50 flex justify-end transition-all duration-300 ${
+          openDropdown ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={() => setOpenDropdown(false)}
+      >
+        <div
+          className={`w-[260px] bg-white h-full flex flex-col justify-between pb-24 shadow-2xl transition-all duration-300 ${
+            openDropdown ? "translate-x-0" : "translate-x-[300px] "
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="mt-20 px-5 space-y-2 font-medium">
+            <Link
+              href="/dashboard"
+              className="p-2 inline-block w-full text-left"
+            >
+              Dashboard
+            </Link>
+            <button
+              className="p-2 inline-block w-full text-left"
+              onClick={() => {
+                setOpenDropdown(false);
+                setOpenProfileModal(true);
+              }}
+            >
+              Update Profile
+            </button>
+            <button
+              className="p-2 inline-block w-full text-left"
+              onClick={() => {
+                setOpenDropdown(false);
+                setOpenPasswordModal(true);
+              }}
+            >
+              Change Password
+            </button>
+            <button
+              className="p-2 inline-block w-full text-left"
+              onClick={() => {
+                setOpenDropdown(false);
+                setOpenNotificationModal(true);
+              }}
+            >
+              Notifications
+            </button>
+            <button
+              disabled={loading}
+              onClick={handleLogout}
+              className="p-2 w-full text-left text-red flex gap-2 items-center"
+            >
+              Log out {loading && <span className="loader-red"></span>}
+            </button>
+          </div>
+          <div className="space-y-3 px-6 mt-5">
+            <TotalPointsModal />
+
+            <FlamePointsModal />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const TotalPointsModal = () => {
+  const { user } = useUserStore();
+
+  const { totalXPPoints, expensePoints, incomePoints } = getPoints(user!);
+
+  return (
+    <div className="sm:w-[370px] border border-gray4 rounded-lg bg-white sm:p-4">
+      <div className="bg-[#FBFAFA] rounded-lg p-2 sm:p-4">
+        <div className="flex gap-4 items-center border-b border-gray4 pb-2 sm:pb-4">
+          <span className="border border-[#F6F6F6] rounded-full bg-white w-7 sm:w-14 h-7 sm:h-14 grid place-content-center">
+            <FlashIcon className="w-2 sm:w-4" />
+          </span>
+          <div className="text-gray1 text-left">
+            <h4 className="font-extrabold sm:text-[30px]">{totalXPPoints}</h4>
+            <span className="font-semibold text-xs sm:mt-3 block">
+              Points earned
+            </span>
+          </div>
+        </div>
+        <div className="mt-4 flex justify-between items-center">
+          <article className="flex items-center gap-2 sm:gap-4">
+            <span className="border border-[#F6F6F6] rounded-full bg-[#EFF5FF] w-6 sm:w-11 h-6 sm:h-11 grid place-content-center">
+              <ArrowDownIcon />
+            </span>
+            <div className="text-gray1 text-left">
+              <h5 className="font-semibold text-xs sm:text-sm">Income</h5>
+              <span className="font-semibold text-[10px] block">
+                {incomePoints}XP
+              </span>
+            </div>
+          </article>
+          <article className="flex items-center gap-2 sm:gap-4">
+            <span className="border border-[#F6F6F6] rounded-full bg-[#EFF5FF] w-6 sm:w-11 h-6 sm:h-11 grid place-content-center">
+              <ArrowTopIcon />
+            </span>
+            <div className="text-gray1 text-left">
+              <h5 className="font-semibold text-xs sm:text-sm">Expenses</h5>
+              <span className="font-semibold text-[10px] block">
+                {expensePoints}XP
+              </span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FlamePointsModal = () => {
+  const { user } = useUserStore();
+  const { flamePoints } = getPoints(user!);
+
+  return (
+    <div className="sm:w-[370px] border border-gray4 rounded-lg bg-white sm:p-4">
+      <div className="bg-[#FBFAFA] rounded-lg p-2 sm:p-4">
+        <div className="flex gap-4 items-center">
+          <span className="border border-[#F6F6F6] rounded-full bg-white w-7 sm:w-14 h-7 sm:h-14 grid place-content-center">
+            <FlameIcon />
+          </span>
+          <div className="text-gray1 text-left">
+            <h4 className="font-extrabold sm:text-[30px]">{flamePoints}</h4>
+            <span className="font-semibold text-xs sm:mt-3 block">
+              Days streaks
+            </span>
+          </div>
+        </div>
+        <div className="mt-4 h-5 w-full bg-[#FDEEF0] rounded relative overflow-hidden">
+          <span
+            className="absolute left-0 top-0 h-full bg-[#FF3448]"
+            style={{ width: `${(flamePoints / 30) * 100}%` }}
+          ></span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FlashIcon = ({ className }: { className?: string }) => (
   <svg
-    width={width}
+    width={12}
+    className={className}
     // height="29"
     viewBox="0 0 16 29"
     fill="none"
@@ -271,6 +443,7 @@ const FlashIcon = ({ width = 12 }) => (
 
 const FlameIcon = () => (
   <svg
+    className="w-2 sm:w-4"
     width="15"
     height="18"
     viewBox="0 0 15 18"
@@ -286,6 +459,7 @@ const FlameIcon = () => (
 
 const ArrowDownIcon = () => (
   <svg
+    className="w-2 sm:w-[14px]"
     width="14"
     height="18"
     viewBox="0 0 14 18"
@@ -301,6 +475,7 @@ const ArrowDownIcon = () => (
 
 const ArrowTopIcon = () => (
   <svg
+    className="w-2 sm:w-[15px]"
     width="15"
     height="18"
     viewBox="0 0 15 18"

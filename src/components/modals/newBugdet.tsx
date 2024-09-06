@@ -50,9 +50,11 @@ const NewBudgetModal = ({
             width={0}
             height={0}
             sizes="100vw"
-            className="w-auto h-auto min-h-[64px]"
+            className="w-auto h-[45px] sm:h-auto sm:min-h-[64px]"
           />
-          <h2 className="mt-3 font-semibold text-gray1 text-xl">New Budget</h2>
+          <h2 className="mt-3 font-semibold text-gray1 text-lg sm:text-xl">
+            New Budget
+          </h2>
         </div>
         <p>
           Creating a new budget will replace your existing budget and all
@@ -71,14 +73,14 @@ const NewBudgetModal = ({
         <p>Are you sure you want to continue?</p>
         <div className="flex gap-6">
           <button
-            className="w-full border-2 border-primary rounded-lg text-primary font-semibold py-4"
+            className="w-full border-2 border-primary rounded-lg text-primary font-semibold py-2 sm:py-4"
             onClick={() => setOpenModal(false)}
           >
             Cancel
           </button>
           <button
             disabled={loading}
-            className="w-full bg-primary rounded-lg flex items-center justify-center gap-3 text-white font-semibold py-4 transition-colors duration-300 disabled:bg-gray3"
+            className="w-full bg-primary rounded-lg flex items-center justify-center gap-3 text-white font-semibold py-2 sm:py-4 transition-colors duration-300 disabled:bg-gray3"
             onClick={handleCreate}
           >
             Create budget

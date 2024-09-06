@@ -57,34 +57,34 @@ const Page = () => {
   }
 
   return (
-    <main className="w-fullscreen max-w-full mx-auto px-20 my-32">
+    <main className="w-fullscreen max-w-full mx-auto px-5 md:px-20 my-32">
       <Header />
       <div>
-        <h2 className="font-bold text-3xl text-[#092256]">
+        <h2 className="font-bold text-xl sm:text-3xl text-[#092256]">
           Welcome back, {user?.firstName}
         </h2>
-        <p className="text-gray2 mt-1">
+        <p className="text-gray2 text-sm sm:text-base mt-1">
           Seamless tracking and engaging reward all in one app.
         </p>
       </div>
 
-      <div className="mt-10 flex gap-5">
-        <div className="w-[700px] 2xl:w-[820px]">
-          <section className="w-full h-[415px] py-5 px-6 border border-gray4 bg-white rounded-xl">
-            <div className="flex justify-between items-center">
+      <div className="mt-10 flex flex-col 2lg:flex-row gap-5">
+        <div className="2lg:w-[650px] xl:w-[700px] 2xl:w-[820px]">
+          <section className="w-full md:h-[415px] py-5 px-4 sm:px-6 border border-gray4 bg-white rounded-xl">
+            <div className="flex gap-5 justify-between sm:items-center flex-col-reverse sm:flex-row">
               <div>
-                <h4 className="font-semibold text-xl text-gray1">
+                <h4 className="font-semibold text-lg sm:text-xl text-gray1">
                   Net account Value
                 </h4>
-                <h5 className="font-semibold text-gray1 mt-1">
+                <h5 className="font-semibold text-sm sm:text-base text-gray1 mt-1">
                   Monthly Income:{" "}
                   <span className="text-primary font-bold">
                     {formatAmount(user?.budget?.monthlyIncome!)}
                   </span>
                 </h5>
               </div>
-              <div className="flex gap-3 items-center">
-                <div className="p-4 border border-gray4 rounded-lg flex items-center gap-2.5">
+              <div className="flex gap-3 items-center justify-between w-full sm:w-auto">
+                <div className="p-2 sm:p-4 border border-gray4 rounded-lg flex items-center gap-2.5">
                   <DateIcon />
                   <span className="text-gray1 font-semibold text-sm">
                     {month} {currentDate} - {nextMonth} {nextMonthExactDate},{" "}
@@ -92,7 +92,7 @@ const Page = () => {
                   </span>
                 </div>
                 <button
-                  className="w-12 h-12 rounded-full bg-primary grid place-content-center"
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-primary grid place-content-center"
                   onClick={() => setOpenNewBudgetModal(true)}
                 >
                   <PlusIcon />
@@ -100,16 +100,16 @@ const Page = () => {
               </div>
             </div>
 
-            <div className="mt-20 flex gap-6">
-              <article className="w-full h-[200px] bg-[#F2FFF2] px-4 py-6 rounded-2xl">
+            <div className="mt-10 sm:mt-20 flex flex-col md:flex-row gap-6">
+              <article className="w-full h-[180px] md:h-[200px] bg-[#F2FFF2] px-4 py-6 rounded-2xl">
                 <h5 className="text-gray1 font-semibold text-sm">Balance</h5>
-                <h3 className="mt-2 text-[25px] 2xl:text-[32px] font-bold text-green">
+                <h3 className="mt-2 text-xl lg:text-[25px] 2xl:text-[32px] font-bold text-green">
                   {formatAmount(totalBalance)}
                 </h3>
               </article>
-              <article className="w-full h-[200px] bg-[#EFF5FF] px-4 py-6 rounded-2xl">
+              <article className="w-full h-[180px] md:h-[200px] bg-[#EFF5FF] px-4 py-6 rounded-2xl">
                 <h5 className="text-gray1 font-semibold text-sm">Income</h5>
-                <h3 className="mt-2 text-[25px] 2xl:text-[32px] font-bold text-primary">
+                <h3 className="mt-2 text-xl lg:text-[25px] 2xl:text-[32px] font-bold text-primary">
                   {formatAmount(incomeTotal)}
                 </h3>
                 <button
@@ -120,9 +120,9 @@ const Page = () => {
                   Add Income
                 </button>
               </article>
-              <article className="w-full h-[200px] bg-[#FFF4F5] px-4 py-6 rounded-2xl">
+              <article className="w-full h-[180px] md:h-[200px] bg-[#FFF4F5] px-4 py-6 rounded-2xl">
                 <h5 className="text-gray1 font-semibold text-sm">Expenses</h5>
-                <h3 className="mt-2 text-[25px] 2xl:text-[32px] font-bold text-red">
+                <h3 className="mt-2 text-xl lg:text-[25px] 2xl:text-[32px] font-bold text-red">
                   {formatAmount(expensesTotal)}
                 </h3>
                 <button
@@ -136,9 +136,9 @@ const Page = () => {
             </div>
           </section>
 
-          <section className="mt-5 w-full h-[415px] py-5 px-6 border border-gray4 bg-white rounded-xl overflow-clip">
-            <div className="flex justify-between items-center">
-              <h4 className="font-semibold text-xl text-gray1">
+          <section className="mt-5 w-full 2lg:h-[415px] border border-gray4 bg-white rounded-xl overflow-clip">
+            <div className="flex justify-between items-center pt-5 px-4 sm:px-6">
+              <h4 className="font-semibold text-lg sm:text-xl text-gray1">
                 Transaction history
               </h4>
               <button
@@ -148,41 +148,51 @@ const Page = () => {
                 See all
               </button>
             </div>
-            <div className="mt-5 flex justify-between p-4 bg-[#FBFAFA] rounded-lg font-semibold text-gray1 text-center">
-              <h4 className="w-[200px] text-left">Title</h4>
-              <h4 className="w-[200px]">Date</h4>
-              <h4 className="w-[200px]">Amount</h4>
-              <h4 className="w-[200px]">Balance</h4>
-            </div>
-            <div className="space-y-2 mt-2">
-              {history?.slice(0, 4).map((data, index) => (
-                <HistoryBox key={index} data={data} />
-              ))}
+            <div className="pb-5 px-6 overflow-x-scroll sm:overflow-x-auto scrollbar">
+              <div className="w-[600px] sm:w-full">
+                <div className="mt-5 flex justify-between p-4 bg-[#FBFAFA] text-sm sm:text-base rounded-lg font-semibold text-gray1 text-center">
+                  <h4 className="w-[200px] text-left">Title</h4>
+                  <h4 className="w-[200px]">Date</h4>
+                  <h4 className="w-[200px]">Amount</h4>
+                  <h4 className="w-[200px]">Balance</h4>
+                </div>
+                <div className="space-y-2 mt-2 text-sm sm:text-base">
+                  {history?.slice(0, 4).map((data, index) => (
+                    <HistoryBox key={index} data={data} />
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
         </div>
 
-        <div className="w-full">
-          <section className="w-full h-[415px] py-5 px-6 border border-gray4 bg-white rounded-xl">
-            <h4 className="font-semibold text-xl text-gray1">Analytics</h4>
+        <div className="w-full flex flex-col-reverse 2lg:flex-col gap-5">
+          <section className="w-full h-[415px] py-5 px-4 sm:px-6 border border-gray4 bg-white rounded-xl">
+            <h4 className="font-semibold text-lg sm:text-xl text-gray1">
+              Analytics
+            </h4>
 
             <AnalyticsBar />
 
             <div className="flex mt-5 justify-between">
-              <div className="flex gap-3 items-center">
+              <div className="flex gap-1 sm:gap-3 flex-col sm:flex-row sm:items-center">
                 <span className="w-4 h-4 rounded bg-[#EFF5FF] inline-block" />
                 <div>
-                  <h4 className="text-gray2 font-medium">Income</h4>
-                  <h3 className="text-primary mt-1 text-xl font-bold">
+                  <h4 className="text-gray2 font-medium text-xs sm:text-base">
+                    Income
+                  </h4>
+                  <h3 className="text-primary mt-1 text-base sm:text-xl font-bold">
                     {formatAmount(incomeTotal)}
                   </h3>
                 </div>
               </div>
-              <div className="flex gap-3 items-center">
+              <div className="flex gap-1 sm:gap-3 flex-col sm:flex-row sm:items-center">
                 <span className="w-4 h-4 rounded bg-[#FFE3E6] inline-block" />
                 <div>
-                  <h4 className="text-gray2 font-medium">Expenses</h4>
-                  <h3 className="text-red mt-1 text-xl font-bold">
+                  <h4 className="text-gray2 font-medium text-xs sm:text-base">
+                    Expenses
+                  </h4>
+                  <h3 className="text-red mt-1 text-base sm:text-xl font-bold">
                     {formatAmount(expensesTotal)}
                   </h3>
                 </div>
@@ -190,9 +200,11 @@ const Page = () => {
             </div>
           </section>
 
-          <section className="w-full h-[415px] py-5 px-6 border border-gray4 bg-white rounded-xl mt-5">
+          <section className="w-full h-[415px] py-5 px-4 sm:px-6 border border-gray4 bg-white rounded-xl">
             <div className="flex justify-between items-center">
-              <h4 className="font-semibold text-xl text-gray1">Categories</h4>
+              <h4 className="font-semibold text-lg sm:text-xl text-gray1">
+                Categories
+              </h4>
               <button
                 className="flex gap-1.5 items-center text-primary text-sm font-semibold"
                 onClick={() => setOpenEditCategoryModal(true)}

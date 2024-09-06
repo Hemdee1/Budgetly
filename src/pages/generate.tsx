@@ -56,7 +56,7 @@ const Page = () => {
   }, [user, router]);
 
   return (
-    <div className="py-24">
+    <div className="py-24 px-5">
       <AuthHeader />
 
       <div className="w-[600px] mt-20 max-w-full mx-auto border-gray4 border  rounded-3xl px-5 sm:px-10 py-8">
@@ -64,8 +64,10 @@ const Page = () => {
           <div className="h-1 w-full bg-gray3 rounded-full">
             <span className="h-full w-full bg-primary block rounded-full"></span>
           </div>
-          <span className="mt-5 block text-gray2">Step 2 of 2</span>
-          <h1 className="text-gray1 text-xl text-center font-bold">
+          <span className="mt-5 block text-xs sm:text-base text-gray2">
+            Step 2 of 2
+          </span>
+          <h1 className="text-gray1 mt-2 sm:text-xl text-left sm:text-center font-bold">
             Generate Budget
           </h1>
 
@@ -73,7 +75,7 @@ const Page = () => {
             <div className="relative ">
               <input
                 type="text"
-                className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+                className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
                 placeholder="Monthly Income"
                 value={income}
                 onChange={(e) => {
@@ -96,7 +98,7 @@ const Page = () => {
               <div className="relative ">
                 <input
                   type="text"
-                  className="bg-[#F5F5F5] px-4 py-5 rounded-lg w-full text-sm"
+                  className="bg-[#F5F5F5] px-4 py-4 sm:py-5 rounded-lg w-full text-sm"
                   placeholder="Annual Rent"
                   value={rent}
                   onChange={(e) => {
@@ -112,18 +114,20 @@ const Page = () => {
                   </span>
                 )}
               </div>
-              <span className="text-sm text-gray2 block mt-1">
+              <span className="text-xs sm:text-sm text-gray2 block mt-1">
                 Leave blank if you don&apos;t pay rent
               </span>
             </div>
 
             <div>
-              <h2 className="text-gray1 font-semibold">Gender?</h2>
-              <p className="mt-1 text-gray2 text-sm">
+              <h2 className="text-gray1 text-sm sm:text-base font-semibold">
+                Gender?
+              </h2>
+              <p className="mt-1 text-gray2 text-xs sm:text-sm">
                 We use gender to personalize our budget recommendation for you.
               </p>
               <div className="mt-4 flex gap-6">
-                <div className="flex gap-2 items-center text-sm">
+                <div className="flex gap-2 items-center text-xs sm:text-sm">
                   <input
                     type="radio"
                     name="gender"
@@ -133,7 +137,7 @@ const Page = () => {
                   />
                   <label htmlFor="male">Male</label>
                 </div>
-                <div className="flex gap-2 items-center text-sm">
+                <div className="flex gap-2 items-center text-xs sm:text-sm">
                   <input
                     type="radio"
                     name="gender"
@@ -147,9 +151,11 @@ const Page = () => {
             </div>
 
             <div>
-              <h2 className="text-gray1 font-semibold">Marital Status?</h2>
+              <h2 className="text-gray1 font-semibold text-sm sm:text-base">
+                Marital Status?
+              </h2>
               <div className="mt-2 flex gap-6">
-                <div className="flex gap-2 items-center text-sm">
+                <div className="flex gap-2 items-center text-xs sm:text-sm">
                   <input
                     type="radio"
                     name="status"
@@ -159,7 +165,7 @@ const Page = () => {
                   />
                   <label htmlFor="married">Married</label>
                 </div>
-                <div className="flex gap-2 items-center text-sm">
+                <div className="flex gap-2 items-center text-xs sm:text-sm">
                   <input
                     type="radio"
                     name="status"
@@ -173,9 +179,11 @@ const Page = () => {
             </div>
 
             <div>
-              <h2 className="text-gray1 font-semibold">Mode of transport</h2>
+              <h2 className="text-gray1 font-semibold text-sm sm:text-base">
+                Mode of transport
+              </h2>
               <div className="mt-2 flex gap-6">
-                <div className="flex gap-2 items-center text-sm">
+                <div className="flex gap-2 items-center text-xs sm:text-sm">
                   <input
                     type="radio"
                     name="transport"
@@ -185,7 +193,7 @@ const Page = () => {
                   />
                   <label htmlFor="private car">Private Car</label>
                 </div>
-                <div className="flex gap-2 items-center text-sm">
+                <div className="flex gap-2 items-center text-xs sm:text-sm">
                   <input
                     type="radio"
                     name="transport"
@@ -202,7 +210,7 @@ const Page = () => {
               <button
                 onClick={handleGenerate}
                 disabled={!(income && gender && status && transport)}
-                className="w-full py-5 rounded-lg bg-primary font-bold text-center text-white mt-6 transition-colors duration-300 disabled:bg-gray3"
+                className="w-full py-4 sm:py-5 rounded-lg bg-primary font-bold text-center text-white mt-6 transition-colors duration-300 disabled:bg-gray3"
               >
                 Generate
               </button>

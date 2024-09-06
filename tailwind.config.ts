@@ -24,6 +24,9 @@ const config: Config = {
       width: {
         fullscreen: "1440px",
       },
+      screens: {
+        "2lg": "1200px",
+      },
     },
   },
   plugins: [],
