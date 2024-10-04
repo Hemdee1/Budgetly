@@ -3,11 +3,9 @@ interface API {
   post: (url: string, data: object) => Promise<any>;
 }
 
-// const baseUrl = "http://localhost:5000";
+const BACKEND_URL = "https://api.budgetly.me";
 const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://budgetease-backend.onrender.com"
-    : "http://localhost:5000";
+  process.env.NODE_ENV === "production" ? BACKEND_URL : "http://localhost:5000";
 
 export const API: API = {
   async get(url: string): Promise<any> {
